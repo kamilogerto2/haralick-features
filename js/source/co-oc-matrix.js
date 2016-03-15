@@ -20,14 +20,14 @@ class COOCMCalculator {
             previousValue = 0,
             sum = 0;
 
+        var i = 0;
         sourceMatrix.forEach(function (value, index) {
             //here is the algorithm which calculate COOCM
             //now for only one orientation = horizontally
             switch (self.orientation) {
                 case 'horizontally':
                 {
-                    if
-                    (index[1] + self.distance <= sourceMatrix._size[1] - 1) {
+                    if (index[1] + self.distance <= sourceMatrix._size[1] - 1) {
                         nextValue = sourceMatrix.subset(math.index(index[0], index[1] + self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
@@ -37,6 +37,7 @@ class COOCMCalculator {
                     }
                     break;
                 }
+
                 case 'vertically':
                 {
                     //TODO TEST
@@ -79,6 +80,9 @@ class COOCMCalculator {
                     }
                     break;
                 }
+
+                default:
+                    return false;
             }
         });
 
@@ -87,9 +91,9 @@ class COOCMCalculator {
         });
 
         //normalize coocmMatrix
-        this.coocmMatrix.forEach(function (value, index) {
+        /*this.coocmMatrix.forEach(function (value, index) {
             self.coocmMatrix.subset(math.index(index[0], index[1]),  value / sum);
-        });
+        });*/
 
         //show matrix in the console
         console.log(this.coocmMatrix._data);
@@ -97,13 +101,10 @@ class COOCMCalculator {
 
     //incrementing cooc matrix - remember that this matrix is simmetric
     incrementCOOCMMatrix (verse, column) {
-        //console.log('verse', verse, 'column', column);
-        //console.log(this.coocmMatrix._data);
-        //console.log(this.coocmMatrix._size);
         this.coocmMatrix.subset(math.index(verse, column), this.coocmMatrix.subset(math.index(verse, column)) + 1);
-        if (verse !== column) {
+        /*if (verse !== column) {
             this.coocmMatrix.subset(math.index(column, verse), this.coocmMatrix.subset(math.index(verse, column)));
-        }
+        }*/
     }
 
     setDistance(distance) {
