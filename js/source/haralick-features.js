@@ -2,7 +2,6 @@
  * Created by Kamil on 2016-03-12.
  */
 'use strict';
-var math = require('mathjs');
 var StatisticalProperties = require('./statistical-properties');
 
 class HaralickFeaturesCalculator {

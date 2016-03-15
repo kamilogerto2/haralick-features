@@ -23,16 +23,16 @@ class COOCMCalculator {
         sourceMatrix.forEach(function (value, index) {
             //here is the algorithm which calculate COOCM
             //now for only one orientation = horizontally
-            switch (this.orientation) {
+            switch (self.orientation) {
                 case 'horizontally':
                 {
                     if
-                    (index[1] + this.distance <= sourceMatrix._size[1] - 1) {
-                        nextValue = sourceMatrix.subset(math.index(index[0], index[1] + this.distance));
+                    (index[1] + self.distance <= sourceMatrix._size[1] - 1) {
+                        nextValue = sourceMatrix.subset(math.index(index[0], index[1] + self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
-                    if (index[1] - this.distance >= 0) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0], index[1] - this.distance));
+                    if (index[1] - self.distance >= 0) {
+                        prevoiusValue = sourceMatrix.subset(math.index(index[0], index[1] - self.distance));
                         self.incrementCOOCMMatrix(value, prevoiusValue);
                     }
                     break;
@@ -41,12 +41,12 @@ class COOCMCalculator {
                 {
                     //TODO TEST
                     //vertically
-                    if (index[0] + this.distance <= sourceMatrix._size[0] - 1) {
-                        nextValue = sourceMatrix.subset(math.index(index[0], index[0] + this.distance));
+                    if (index[0] + self.distance <= sourceMatrix._size[0] - 1) {
+                        nextValue = sourceMatrix.subset(math.index(index[0], index[0] + self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
-                    if (index[0] - this.distance >= 0) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0], index[0] - this.distance));
+                    if (index[0] - self.distance >= 0) {
+                        prevoiusValue = sourceMatrix.subset(math.index(index[0], index[0] - self.distance));
                         self.incrementCOOCMMatrix(value, prevoiusValue);
                     }
                     break;
@@ -55,12 +55,12 @@ class COOCMCalculator {
                 case '45st':
                 {
                     //45st
-                    if (index[1] + this.distance <= sourceMatrix._size[1] - 1 && index[0] - this.distance >= 0) {
-                        nextValue = sourceMatrix.subset(math.index(index[0] + this.distance, index[1] - this.distance));
+                    if (index[1] + self.distance <= sourceMatrix._size[1] - 1 && index[0] - self.distance >= 0) {
+                        nextValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1] - self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
-                    if (index[1] - this.distance >= 0 && index[0] + this.distance <= sourceMatrix._size[0] - 1) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0] - this.distance, index[1] + this.distance));
+                    if (index[1] - self.distance >= 0 && index[0] + self.distance <= sourceMatrix._size[0] - 1) {
+                        prevoiusValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1] + self.distance));
                         self.incrementCOOCMMatrix(value, prevoiusValue);
                     }
                     break;
@@ -69,12 +69,12 @@ class COOCMCalculator {
                 case '135st':
                 {
                     //135st
-                    if (index[0] + this.distance <= sourceMatrix._size[0] - 1 && index[1] - this.distance >= 0) {
-                        nextValue = sourceMatrix.subset(math.index(index[0] + this.distance, index[1] + this.distance));
+                    if (index[0] + self.distance <= sourceMatrix._size[0] - 1 && index[1] - self.distance >= 0) {
+                        nextValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1] + self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
-                    if (index[0] - this.distance >= 0 && index[1] + this.distance <= sourceMatrix._size[1] - 1) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0] - this.distance, index[1] - this.distance));
+                    if (index[0] - self.distance >= 0 && index[1] + self.distance <= sourceMatrix._size[1] - 1) {
+                        prevoiusValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1] - self.distance));
                         self.incrementCOOCMMatrix(value, prevoiusValue);
                     }
                     break;

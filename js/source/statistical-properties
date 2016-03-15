@@ -4,9 +4,9 @@ var math = require('mathjs');
 //all ready to testing
 class StatisticalProperties {
 
-    constructor(coocMatrix, normalized = true) {
+    constructor(coocMatrix, normalized) {
         this.coocMatrix = coocMatrix;
-        this.normalized = normalized;
+        this.normalized = normalized ? normalized : false;
     }
 
     /**
