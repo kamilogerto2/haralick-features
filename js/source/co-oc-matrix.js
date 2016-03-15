@@ -17,7 +17,7 @@ class COOCMCalculator {
     calculateCOOCM(sourceMatrix) {
         var self = this,
             nextValue = 0,
-            prevoiusValue = 0,
+            previousValue = 0,
             sum = 0;
 
         sourceMatrix.forEach(function (value, index) {
@@ -32,8 +32,8 @@ class COOCMCalculator {
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
                     if (index[1] - self.distance >= 0) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0], index[1] - self.distance));
-                        self.incrementCOOCMMatrix(value, prevoiusValue);
+                        previousValue = sourceMatrix.subset(math.index(index[0], index[1] - self.distance));
+                        self.incrementCOOCMMatrix(value, previousValue);
                     }
                     break;
                 }
@@ -46,8 +46,8 @@ class COOCMCalculator {
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
                     if (index[0] - self.distance >= 0) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0], index[0] - self.distance));
-                        self.incrementCOOCMMatrix(value, prevoiusValue);
+                        previousValue = sourceMatrix.subset(math.index(index[0], index[0] - self.distance));
+                        self.incrementCOOCMMatrix(value, previousValue);
                     }
                     break;
                 }
@@ -56,12 +56,12 @@ class COOCMCalculator {
                 {
                     //45st
                     if (index[1] + self.distance <= sourceMatrix._size[1] - 1 && index[0] - self.distance >= 0) {
-                        nextValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1] - self.distance));
+                        nextValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1] + self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
                     if (index[1] - self.distance >= 0 && index[0] + self.distance <= sourceMatrix._size[0] - 1) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1] + self.distance));
-                        self.incrementCOOCMMatrix(value, prevoiusValue);
+                        previousValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1] - self.distance));
+                        self.incrementCOOCMMatrix(value, previousValue);
                     }
                     break;
                 }
@@ -69,13 +69,13 @@ class COOCMCalculator {
                 case '135st':
                 {
                     //135st
-                    if (index[0] + self.distance <= sourceMatrix._size[0] - 1 && index[1] - self.distance >= 0) {
-                        nextValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1] + self.distance));
+                    if (index[0] - self.distance >= 0 && index[1] - self.distance >= 0) {
+                        nextValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1] - self.distance));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
-                    if (index[0] - self.distance >= 0 && index[1] + self.distance <= sourceMatrix._size[1] - 1) {
-                        prevoiusValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1] - self.distance));
-                        self.incrementCOOCMMatrix(value, prevoiusValue);
+                    if (index[0] + self.distance <= sourceMatrix._size[0] - 1 && index[1] + self.distance <= sourceMatrix._size[1] - 1) {
+                        previousValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1] + self.distance));
+                        self.incrementCOOCMMatrix(value, previousValue);
                     }
                     break;
                 }
