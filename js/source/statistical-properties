@@ -84,14 +84,14 @@ class StatisticalProperties {
     /**
      * @returns vector where new index is difference of the both indexes and value is value from this indexes
      */
-    pxmy() {
+    pxmy(i) {
         var pxmy = new Array( this.coocMatrix._size[0] ).fill(0);
 
         this.coocMatrix.forEach(function (value, index) {
             pxmy[Math.abs(index[0] - index[1])] = pxmy[Math.abs(index[0] - index[1])] + value;
         });
 
-        return pxmy;
+        return pxmy[i];
     }
 
     /**

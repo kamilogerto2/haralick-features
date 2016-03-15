@@ -24,7 +24,9 @@ class HaralickFeaturesCalculator {
     contrast(){
         var contrast = 0;
 
-        for(let i = 0; i < this.coocMatrix._size[0] - 1; i++ ) {
+        for(let i = 0; i < this.coocMatrix._size[0]; i++ ) {
+            //console.log('contrast' + i + ' ' + contrast);
+            //console.log(this.statisticalProperties.pxmy(i));
             contrast = contrast + (Math.pow(i, 2) * this.statisticalProperties.pxmy(i));
         }
 
@@ -87,7 +89,7 @@ class HaralickFeaturesCalculator {
         let sumEntropy = 0;
 
         for (let i = 0; i < 2 * this.coocMatrix._size[0] - 2; i++) {
-            sumEntropy = sumEntropy + this.statisticalProperties.pxpy(i) * Math.log(this.statisticalProperties.pxpy(i));
+            sumEntropy = this.statisticalProperties.pxpy(i) > 0 ? sumEntropy + this.statisticalProperties.pxpy(i) * Math.log(this.statisticalProperties.pxpy(i)) : sumEntropy;
         }
 
         return -sumEntropy;
@@ -97,7 +99,7 @@ class HaralickFeaturesCalculator {
         let entropy = 0;
 
         this.coocMatrix.forEach(function (value, index) {
-            entropy = entropy + value * Math.log(value);
+            entropy = value > 0 ? entropy + value * Math.log(value) : entropy;
         });
 
         return -entropy;
@@ -118,7 +120,7 @@ class HaralickFeaturesCalculator {
         let diffEntropy = 0;
 
         for (let i = 0; i < this.coocMatrix._size[0] - 1; i++) {
-            diffEntropy = diffEntropy + this.statisticalProperties.pxmy(i) * Math.log(this.statisticalProperties.pxmy());
+            diffEntropy = this.statisticalProperties.pxmy(i) > 0 ? diffEntropy + this.statisticalProperties.pxmy(i) * Math.log(this.statisticalProperties.pxmy(i)) : diffEntropy;
         }
 
         return diffEntropy;

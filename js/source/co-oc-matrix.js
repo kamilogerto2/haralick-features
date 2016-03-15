@@ -118,8 +118,3 @@ class COOCMCalculator {
 }
 
 module.exports = COOCMCalculator;
-
-
-
-
-

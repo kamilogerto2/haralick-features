@@ -21,13 +21,13 @@ var coocmMatrix = coocm.calculateCOOCM(y);
 var haralickCalculator = new HaralickFeaturesCalculator(coocmMatrix);
 //objects created correctly
 
-haralickCalculator.angularSecondMoment();
-haralickCalculator.contrast();
-haralickCalculator.correlation();
-haralickCalculator.differenceEntropy();
-haralickCalculator.entropy();
-haralickCalculator.inverseDifferenceMoment();
-haralickCalculator.sumAverage();
-haralickCalculator.sumEntropy();
-haralickCalculator.SumVariance();
-haralickCalculator.variance();
+console.log('angularSecondMoment: ' + haralickCalculator.angularSecondMoment());
+console.log('contrast: ' + haralickCalculator.contrast());
+console.log('correlation: ' + haralickCalculator.correlation());
+console.log('differenceEntropy: ' + haralickCalculator.differenceEntropy());
+console.log('entropy: ' + haralickCalculator.entropy());
+console.log('inverseDifferenceMoment: ' +haralickCalculator.inverseDifferenceMoment());
+console.log('sumAverage: ' + haralickCalculator.sumAverage());
+console.log('sumEntropy: ' + haralickCalculator.sumEntropy());
+console.log('SumVariance: ' + haralickCalculator.SumVariance());
+console.log('variance: ' + haralickCalculator.variance());
