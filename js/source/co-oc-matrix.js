@@ -97,7 +97,7 @@ class COOCMCalculator {
         });
 
         //show matrix in the console
-        console.log(this.coocmMatrix._data);
+        return this.coocmMatrix;
     }
 
     //incrementing cooc matrix - remember that this matrix is simmetric

@@ -70,10 +70,12 @@ class StatisticalProperties {
      * @returns vector where new index is sum of the both indexes and value is value from this indexes
      */
     pxpy() {
-        var pxpy = new Array( this.coocMatrix._size[0] + this.coocMatrix._size[0] - 2 ).fill(0);
+        var pxpy = new Array( this.coocMatrix._size[0] + this.coocMatrix._size[0] - 1 ).fill(0);
 
         this.coocMatrix.forEach(function (value, index) {
-            pxpy[index + index] = pxpy[index + index] + value;
+            pxpy[index[0] + index[1]] = pxpy[index[0] + index[1]] + value;
+            /*console.log('index[0] + index[1]' + (index[0] + index[1]));
+            console.log('value' + pxpy[index[0] + index[1]]);*/
         });
 
         return pxpy;
@@ -83,10 +85,10 @@ class StatisticalProperties {
      * @returns vector where new index is difference of the both indexes and value is value from this indexes
      */
     pxmy() {
-        var pxmy = new Array( this.coocMatrix._size[0] - 1 ).fill(0);
+        var pxmy = new Array( this.coocMatrix._size[0] ).fill(0);
 
         this.coocMatrix.forEach(function (value, index) {
-            pxmy[Math.abs(index + index)] = pxmy[Math.abs(index + index)] + value;
+            pxmy[Math.abs(index[0] - index[1])] = pxmy[Math.abs(index[0] - index[1])] + value;
         });
 
         return pxmy;
@@ -99,12 +101,13 @@ class StatisticalProperties {
     hxy1 () {
         var px = 0,
             py = 0,
-            HXY1 = 0;
+            HXY1 = 0,
+            self = this;
 
         this.coocMatrix.forEach(function (value, index) {
-            px = this.px(index[0]);
-            py = this.py(index[1]);
-            HXY1 = HXY1 + value * Math.log(px * py);
+            px = self.px(index[0]);
+            py = self.py(index[1]);
+            HXY1 = (px === 0 || py === 0) ? HXY1 : HXY1 + value * Math.log(px * py);
         });
 
         return -HXY1;
@@ -117,12 +120,13 @@ class StatisticalProperties {
     hxy2() {
         var px = 0,
             py = 0,
-            HXY2 = 0;
+            HXY2 = 0,
+            self = this;
 
         this.coocMatrix.forEach(function (value, index) {
-            px = this.px(index[0]);
-            py = this.py(index[1]);
-            HXY2 = HXY2 + px * py * Math.log(px * py);
+            px = self.px(index[0]);
+            py = self.py(index[1]);
+            HXY2 = (px === 0 || py === 0) ? HXY2 : HXY2 + px * py * Math.log(px * py);
         });
 
         return -HXY2;
@@ -137,6 +141,7 @@ class StatisticalProperties {
         this.coocMatrix.forEach(function (value, index) {
             miX = miX + value * index[0];
         });
+
         return miX;
     }
 
