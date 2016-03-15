@@ -44,3 +44,24 @@ console.log('pxpy: ' + statisticalProperties.pxpy());
 
 //should be [0.66 0.33 0 0]
 console.log('pxmy: ' + statisticalProperties.pxmy());
+
+//helper HXY1
+console.log('hxy1: ' + statisticalProperties.hxy1());
+
+//helper HXY2
+console.log('hxy2: ' + statisticalProperties.hxy2());
+
+//mean along x should be 1.5
+console.log('mix: ' + statisticalProperties.miX());
+
+//mean along y should be 1.5
+console.log('miy: ' + statisticalProperties.miY());
+
+//mean along y and x should be 1.5
+console.log('mi: ' + statisticalProperties.mi());
+
+//standard deviation along x should be 1.5
+console.log('sigmaX: ' + statisticalProperties.sigmaX());
+
+//standard deviation along y should be 1.5
+console.log('sigmaY: ' + statisticalProperties.sigmaY());
