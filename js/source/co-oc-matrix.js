@@ -20,7 +20,8 @@ class COOCMCalculator {
             previousValue = 0,
             sum = 0;
 
-        var i = 0;
+        this.coocmMatrix = math.zeros(this.ngLevel, this.ngLevel);
+
         sourceMatrix.forEach(function (value, index) {
             //here is the algorithm which calculate COOCM
             //now for only one orientation = horizontally
@@ -91,9 +92,9 @@ class COOCMCalculator {
         });
 
         //normalize coocmMatrix
-        /*this.coocmMatrix.forEach(function (value, index) {
+        this.coocmMatrix.forEach(function (value, index) {
             self.coocmMatrix.subset(math.index(index[0], index[1]),  value / sum);
-        });*/
+        });
 
         //show matrix in the console
         console.log(this.coocmMatrix._data);
