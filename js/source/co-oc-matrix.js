@@ -44,11 +44,11 @@ class COOCMCalculator {
                     //TODO TEST
                     //vertically
                     if (index[0] + self.distance <= sourceMatrix._size[0] - 1) {
-                        nextValue = sourceMatrix.subset(math.index(index[0], index[0] + self.distance));
+                        nextValue = sourceMatrix.subset(math.index(index[0] + self.distance, index[1]));
                         self.incrementCOOCMMatrix(value, nextValue);
                     }
                     if (index[0] - self.distance >= 0) {
-                        previousValue = sourceMatrix.subset(math.index(index[0], index[0] - self.distance));
+                        previousValue = sourceMatrix.subset(math.index(index[0] - self.distance, index[1]));
                         self.incrementCOOCMMatrix(value, previousValue);
                     }
                     break;
