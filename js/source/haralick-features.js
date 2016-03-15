@@ -32,20 +32,22 @@ class HaralickFeaturesCalculator {
     }
 
     variance() {
-        let variance = 0;
+        let variance = 0,
+            self = this;
 
-        this.coocMatrix.forEach(function (value, index, matrix) {
-            variance = variance + Math.pow(index[0] - this.statisticalProperties.mi(),2) * value;
+        this.coocMatrix.forEach(function (value, index) {
+            variance = variance + Math.pow(index[0] - self.statisticalProperties.mi(),2) * value;
         });
 
         return variance;
     }
 
     correlation() {
-        let correlation = 0;
+        let correlation = 0,
+            self = this;
 
-        this.coocMatrix.forEach(function (value, index, matrix) {
-            correlation = correlation + ((index[0] - this.statisticalProperties.miX()) * (index[1] - this.statisticalProperties.miY())) / (this.statisticalProperties.sigmaX() * this.statisticalProperties.sigmaY()) * value;
+        this.coocMatrix.forEach(function (value, index) {
+            correlation = correlation + ((index[0] - self.statisticalProperties.miX()) * (index[1] - self.statisticalProperties.miY())) / (self.statisticalProperties.sigmaX() * self.statisticalProperties.sigmaY()) * value;
         });
 
         return correlation;
