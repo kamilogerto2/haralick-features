@@ -22,12 +22,13 @@ class HaralickFeaturesCalculator {
     }
 
     contrast(){
-        var contrast = 0;
+        var contrast = 0,
+            pxmy = this.statisticalProperties.pxmy;
 
         for(let i = 0; i < this.coocMatrix._size[0]; i++ ) {
             //console.log('contrast' + i + ' ' + contrast);
             //console.log(this.statisticalProperties.pxmy(i));
-            contrast = contrast + (Math.pow(i, 2) * this.statisticalProperties.pxmy(i));
+            contrast = contrast + (Math.pow(i, 2) * pxmy[i]);
         }
 
         return contrast;
@@ -35,10 +36,10 @@ class HaralickFeaturesCalculator {
 
     variance() {
         let variance = 0,
-            self = this;
+            mi = this.statisticalProperties.mi();
 
         this.coocMatrix.forEach(function (value, index) {
-            variance = variance + Math.pow(index[0] - self.statisticalProperties.mi(),2) * value;
+            variance = variance + Math.pow(index[0] - mi,2) * value;
         });
 
         return variance;
@@ -46,10 +47,13 @@ class HaralickFeaturesCalculator {
 
     correlation() {
         let correlation = 0,
-            self = this;
+            miX = this.statisticalProperties.miX(),
+            miY = this.statisticalProperties.miY(),
+            sigmaX = this.statisticalProperties.sigmaX(),
+            sigmaY = this.statisticalProperties.sigmaY();
 
         this.coocMatrix.forEach(function (value, index) {
-            correlation = correlation + ((index[0] - self.statisticalProperties.miX()) * (index[1] - self.statisticalProperties.miY())) / (self.statisticalProperties.sigmaX() * self.statisticalProperties.sigmaY()) * value;
+            correlation = correlation + ((index[0] - miX) * (index[1] - miY)) / (sigmaX * sigmaY) * value;
         });
 
         return correlation;
@@ -66,30 +70,33 @@ class HaralickFeaturesCalculator {
     }
 
     sumAverage() {
-        let sumAverage = 0;
+        let sumAverage = 0,
+            pxpy = this.statisticalProperties.pxpy;
 
-        this.coocMatrix.forEach(function (value, index) {
-            sumAverage = sumAverage;
-        });
+        for (let i = 0; i < 2 * this.coocMatrix._size[0] - 2; i++) {
+            sumAverage = sumAverage + i * pxpy[i];
+        }
 
         return sumAverage;
     }
 
     SumVariance() {
-        let sumVariance = 0;
+        let sumVariance = 0,
+            pxpy = this.statisticalProperties.pxpy;
 
         for (let i = 0; i < 2 * this.coocMatrix._size[0] - 2; i++) {
-            sumVariance = sumVariance + Math.pow(i - this.sumEntropy(), 2) * this.statisticalProperties.pxpy(i);
+            sumVariance = pxpy[i] > 0 ? sumVariance + Math.pow(i - this.sumEntropy(), 2) * pxpy[i] : sumVariance;
         }
 
         return sumVariance;
     }
 
     sumEntropy() {
-        let sumEntropy = 0;
+        let sumEntropy = 0,
+            pxpy = this.statisticalProperties.pxpy;
 
         for (let i = 0; i < 2 * this.coocMatrix._size[0] - 2; i++) {
-            sumEntropy = this.statisticalProperties.pxpy(i) > 0 ? sumEntropy + this.statisticalProperties.pxpy(i) * Math.log(this.statisticalProperties.pxpy(i)) : sumEntropy;
+            sumEntropy = pxpy[i] > 0 ? sumEntropy + pxpy[i] * Math.log(pxpy[i]) : sumEntropy;
         }
 
         return -sumEntropy;
@@ -117,10 +124,11 @@ class HaralickFeaturesCalculator {
     } */
 
     differenceEntropy() {
-        let diffEntropy = 0;
+        let diffEntropy = 0,
+            pxmy = this.statisticalProperties.pxmy;
 
         for (let i = 0; i < this.coocMatrix._size[0] - 1; i++) {
-            diffEntropy = this.statisticalProperties.pxmy(i) > 0 ? diffEntropy + this.statisticalProperties.pxmy(i) * Math.log(this.statisticalProperties.pxmy(i)) : diffEntropy;
+            diffEntropy = pxmy[i] > 0 ? diffEntropy + pxmy[i] * Math.log(pxmy[i]) : diffEntropy;
         }
 
         return diffEntropy;

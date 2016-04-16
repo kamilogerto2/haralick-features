@@ -7,6 +7,8 @@ class StatisticalProperties {
     constructor(coocMatrix, normalized) {
         this.coocMatrix = coocMatrix;
         this.normalized = normalized ? normalized : false;
+        this.pxpy = this.pxpy();
+        this.pxmy = this.pxmy();
     }
 
     /**
@@ -70,7 +72,7 @@ class StatisticalProperties {
      * @returns vector where new index is sum of the both indexes and value is value from this indexes
      */
     pxpy() {
-        var pxpy = new Array( this.coocMatrix._size[0] + this.coocMatrix._size[0] - 1 ).fill(0);
+        var pxpy = new Float32Array( this.coocMatrix._size[0] + this.coocMatrix._size[0] - 1 ).fill(0);
 
         this.coocMatrix.forEach(function (value, index) {
             pxpy[index[0] + index[1]] = pxpy[index[0] + index[1]] + value;
@@ -84,14 +86,14 @@ class StatisticalProperties {
     /**
      * @returns vector where new index is difference of the both indexes and value is value from this indexes
      */
-    pxmy(i) {
-        var pxmy = new Array( this.coocMatrix._size[0] ).fill(0);
+    pxmy() {
+        var pxmy = new Array(this.coocMatrix._size[0]).fill(0);
 
         this.coocMatrix.forEach(function (value, index) {
             pxmy[Math.abs(index[0] - index[1])] = pxmy[Math.abs(index[0] - index[1])] + value;
         });
 
-        return pxmy[i];
+        return pxmy;
     }
 
     /**
