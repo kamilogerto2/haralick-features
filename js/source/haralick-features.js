@@ -10,6 +10,10 @@ class HaralickFeaturesCalculator {
         this.statisticalProperties = new StatisticalProperties(coocMatrix);
     }
 
+    insertCOOCM(coocMatrix) {
+        this.coocMatrix = coocMatrix;
+    }
+
     //aSC - angular Second Moment
     angularSecondMoment() {
         var aSC = 0, self = this;

@@ -76,8 +76,6 @@ class StatisticalProperties {
 
         this.coocMatrix.forEach(function (value, index) {
             pxpy[index[0] + index[1]] = pxpy[index[0] + index[1]] + value;
-            /*console.log('index[0] + index[1]' + (index[0] + index[1]));
-            console.log('value' + pxpy[index[0] + index[1]]);*/
         });
 
         return pxpy;

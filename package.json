@@ -18,5 +18,8 @@
     "watch": "^0.17.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "jimp": "^0.2.22"
   }
 }

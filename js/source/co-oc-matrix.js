@@ -10,7 +10,6 @@ class COOCMCalculator {
     constructor(greyLevels, distance, orientation) {
         this.ngLevel = greyLevels ? greyLevels : 255;
         this.coocmMatrix = null;
-        this.coocmMatrix2 = new Float32Array([this.ngLevel * this.ngLevel]*1).fill(0);
         this.orientation = orientation ? orientation : 'horizontally';
         this.distance =distance ? distance : 1;
     }
@@ -89,7 +88,7 @@ class COOCMCalculator {
         });
 
         // old approach
-        
+
         this.coocmMatrix.forEach(function (value) {
             sum = sum + value;
         });
@@ -99,16 +98,7 @@ class COOCMCalculator {
             self.coocmMatrix.subset(math.index(index[0], index[1]),  value / sum);
         });
 
-        //ready for new approach
 
-        /*this.coocmMatrix2.forEach(function (value) {
-         sum = sum + value;
-         });*/
-
-        /*this.coocmMatrix2.forEach(function (value, index) {
-            //self.coocmMatrix.subset(math.index(index[0], index[1]),  value / sum);
-            self.coocmMatrix2[index] = value / sum;
-        });*/
 
         //show matrix in the console
         return this.coocmMatrix;
@@ -117,9 +107,6 @@ class COOCMCalculator {
     //incrementing cooc matrix - remember that this matrix is simmetric
     incrementCOOCMMatrix (verse, column) {
         this.coocmMatrix.subset(math.index(verse, column), this.coocmMatrix.subset(math.index(verse, column)) + 1);
-
-        //ready for new approach
-        //this.coocmMatrix2[verse * this.ngLevel + column] = this.coocmMatrix2[verse * this.ngLevel + column] + 1;
 
 
         /*if (verse !== column) {
