@@ -1,0 +1,15 @@
+{
+  "ngLevel": 50,
+  "distance": 2,
+  "orientation": "45st",
+  "cageSize": 5,
+  "method": "entropy",
+  "printFactor": 5,
+  "channel": "grey",
+  "min": 255,
+  "max": 0,
+  "processedImage": "stones.jpg",
+  "resultImage": "stones.png",
+  "approach": "global",
+  "savePartialImages" : true
+}

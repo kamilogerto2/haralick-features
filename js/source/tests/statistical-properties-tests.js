@@ -1,7 +1,7 @@
 /**
  * Created by Kamil on 2016-03-15.
  */
-'use strict';
+";
 var StatisticalProperties = require('../statistical-properties');
 var math = require('mathjs');
 var COOCMCalculator = require('../co-oc-matrix');
