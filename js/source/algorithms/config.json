@@ -1,8 +1,8 @@
 {
   "ngLevel": 50,
-  "distance": 2,
+  "distance": 1,
   "orientation": "45st",
-  "cageSize": 5,
+  "cageSize": 3,
   "method": "entropy",
   "printFactor": 5,
   "channel": "grey",
