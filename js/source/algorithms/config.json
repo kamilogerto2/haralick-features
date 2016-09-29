@@ -1,15 +1,15 @@
 {
   "ngLevel": 50,
-  "distance": 1,
+  "distance": 3,
   "orientation": "45st",
-  "cageSize": 3,
+  "cageSize": 5,
   "method": "entropy",
   "printFactor": 5,
   "channel": "grey",
   "min": 255,
   "max": 0,
-  "processedImage": "stones.jpg",
-  "resultImage": "stones.png",
+  "processedImage": "cechy.png",
+  "resultImage": "cechy.png",
   "approach": "global",
   "savePartialImages" : true
 }

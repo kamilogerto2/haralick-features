@@ -6,6 +6,7 @@
  */
 //;
 
+	'use strict';
 class StructuringElement {
 	constructor(d, data) {
 		if (d) {
@@ -30,8 +31,8 @@ class StructuringElement {
 		MorphologicOperations.SECheck(el);
 		for (var j = 0; j < 9; j++) {
 			if (el.data[j] == -1)continue;
-			if (el.data[j] == 1 && this.data[j] == 1) {
-				return 1;
+			if (el.data[j] == 1 && this.data[j] == 255) {
+				return 255;
 			}
 		}
 		return 0;
@@ -201,7 +202,8 @@ class MorphologicOperations {
 			el = new StructuringElement();
 		}
 
-		var result = Array.apply(null, new Array(this.height * this.width)).map(Number.prototype.valueOf, 0);
+		//var result = Array.apply(null, new Array(this.height * this.width)).map(Number.prototype.valueOf, 0);
+		var result = new Array(this.height * this.width);
 
 		for (var x = 1; x < this.width - 1; x++) {
 			for (var y = 1; y < this.height - 1; y++) {
@@ -210,6 +212,7 @@ class MorphologicOperations {
 				result[ind] = mat.dilateOp(el);
 			}
 		}
+		//console.log(result);
 		this.data = result;
 		return this;
 	}
